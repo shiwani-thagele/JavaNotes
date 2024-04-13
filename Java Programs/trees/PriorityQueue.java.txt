@@ -1,0 +1,44 @@
+import java.util.PriorityQueue;
+
+public class Main {
+    // Define a nested class Student that implements Comparable interface
+    static class Student implements Comparable<Student> {
+        String name;
+        int rank;
+
+        // Constructor to initialize name and rank
+        public Student(String name, int rank) {
+            this.name = name;
+            this.rank = rank;
+        }
+
+        // Override compareTo method to compare Students based on rank
+        @Override
+        public int compareTo(Student s2) {
+            return this.rank - s2.rank;
+        }
+    }
+
+    public static void main(String[] args) {
+        // Create a PriorityQueue of Student objects
+        PriorityQueue<Student> pq = new PriorityQueue<>();
+
+        // Add Student objects to the PriorityQueue
+        pq.add(new Student("A", 4));
+        pq.add(new Student("B", 95));
+        pq.add(new Student("C", 2));
+        pq.add(new Student("V", 10));
+
+        // Process and print Students in ascending order of rank
+        while (!pq.isEmpty()) {
+            // Peek at the Student with the lowest rank without removing it
+            Student currentStudent = pq.peek();
+            
+            // Print the name and rank of the current Student
+            System.out.println(currentStudent.name + "->" + currentStudent.rank);
+
+            // Remove the current Student from the PriorityQueue
+            pq.remove();
+        }
+    }
+}
